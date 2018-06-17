@@ -15,7 +15,7 @@ def to_node(type, message):
     elif type == "gesture" and message == "left":
         print("next")
         requests.get("http://localhost:5005/Living%20Room/next")
-    elif type == "gesture" and message == "left":
+    elif type == "gesture" and message == "right":
         print("previous")
         requests.get("http://localhost:5005/Living%20Room/previous")
     elif type == "rotate" and (message == "clockwise" or message == "anticlockwise"):
