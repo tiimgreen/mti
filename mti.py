@@ -18,7 +18,7 @@ def to_node(type, message):
     elif type == "gesture" and message == "left":
         print("previous")
         requests.get("http://localhost:5005/Living%20Room/previous")
-    elif type == "rotate" and message == "clockwise":
+    elif type == "rotate" and (message == "clockwise" or message == "anticlockwise"):
         volume = str(round(some_value / 100))
         print("volume: " + volume)
         requests.get("http://localhost:5005/Living%20Room/volume/" + volume)
