@@ -4,6 +4,7 @@ import signal
 import json
 import sys
 import requests
+import subprocess
 
 some_value = 0
 
@@ -22,7 +23,11 @@ def to_node(type, message):
         print("volume: " + volume)
         requests.get("http://localhost:5005/Living%20Room/volume/" + volume)
 
+state = requests.get("http://localhost:5005/Living%20Room/state").json()
+new_volume = state["volume"]
+some_value = new_volume * 100
 
+print("Volume " + str(new_volume) + " fetched from sonos")
 print("Ready for input...")
 
 @skywriter.flick()
@@ -53,6 +58,7 @@ def spinny(delta):
 
 @skywriter.tap()
 def tap(position):
+  subprocess.call("xset s activate -display :0", shell = True)
   to_node("tap", position)
 
 signal.pause()
